@@ -12,28 +12,26 @@ import org.springframework.kafka.support.Acknowledgment;
 import com.devonfw.module.kafka.common.messaging.retry.api.client.MessageRetryOperations;
 
 /**
- * @author ravicm
  * @param <K>
  * @param <V>
  *
  */
 @Named
-public class SaveEmployeeConsumer<K, V> {
+public class DeleteEmployeeMessageConsumer<K, V> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(SaveEmployeeConsumer.class);
+  private static final Logger LOG = LoggerFactory.getLogger(DeleteEmployeeMessageConsumer.class);
 
   @Inject
   private MessageRetryOperations<K, V> messageRetryOperations;
 
   @Inject
-  private SaveEmployeMessageProcessor<K, V> saveEmployeeMessageProcessor;
+  private DeleteEmployeeMessageProcessor<K, V> deleteEmployeeMessageProcessor;
 
   /**
    * @param consumerRecord
    * @param acknowledgment
-   * @throws Exception
    */
-  @KafkaListener(topics = "${messaging.kafka.health.topicsToCheck}", groupId = "${messaging.kafka.consumer.groupId}", containerFactory = "kafkaListenerContainerFactory")
+  @KafkaListener(topics = "delete-Employee", groupId = "sample-Delete", containerFactory = "kafkaListenerContainerFactory")
   public void consumer(ConsumerRecord<K, V> consumerRecord, Acknowledgment acknowledgment) {
 
     try {
@@ -46,9 +44,10 @@ public class SaveEmployeeConsumer<K, V> {
   private void processMessageAndAcknowledgeListener(ConsumerRecord<K, V> consumerRecord,
       Acknowledgment acknowledgment) {
 
-    this.messageRetryOperations.processMessageWithRetry(consumerRecord, this.saveEmployeeMessageProcessor);
+    this.messageRetryOperations.processMessageWithRetry(consumerRecord, this.deleteEmployeeMessageProcessor);
 
     // Acknowledge the listener.
     acknowledgment.acknowledge();
   }
+
 }

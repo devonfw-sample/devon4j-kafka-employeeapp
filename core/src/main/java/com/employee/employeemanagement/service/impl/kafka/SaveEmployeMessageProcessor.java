@@ -15,10 +15,12 @@ import ch.qos.logback.classic.Logger;
 
 /**
  * @author ravicm
+ * @param <K>
+ * @param <V>
  *
  */
 @Named
-public class SaveEmployeMessageProcessor implements MessageProcessor {
+public class SaveEmployeMessageProcessor<K, V> implements MessageProcessor<K, V> {
 
   private static final Logger LOG = (Logger) LoggerFactory.getLogger(SaveEmployeMessageProcessor.class);
 
@@ -26,24 +28,12 @@ public class SaveEmployeMessageProcessor implements MessageProcessor {
   private Employeemanagement employeemanagement;
 
   @Override
-  public void processMessage(ConsumerRecord<Object, Object> message) {
-
-    // TODO SSp: In real world one have to decide for which errors a retry make sense and for which not
-    // We do not have to stress this very much for the example, but suggestion would be to retry for errors during
-    // json parsing and nothing else
-    // so we catch JsonParseException and JsonMappingException here and nothing else.
-
-    // Reply: ObjectMapper().readValue() expects IOException to be handled .
-
-    // Reply SSp: Ok the problem is, that if catch and consume IOException here, IOExceptions from the logic layer
-    // will also not go into the retry logic.
-    // I proposed a good change to better handle this below.
+  public void processMessage(ConsumerRecord<K, V> message) {
 
     EmployeeEto convertedValue = null;
     try {
       convertedValue = new ObjectMapper().readValue(message.value().toString(), EmployeeEto.class);
     } catch (Exception e) {
-      // Since we catch all Exceptions here no retries will be done for errors during conversion.
       LOG.warn("Message conversion failed. Message will be ignored.", e);
     }
     if (convertedValue != null) {

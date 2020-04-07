@@ -19,9 +19,13 @@ import com.employee.general.common.base.test.TestUtil;
  * Abstract base class for {@link SubsystemTest}s which runs the tests within a local server. <br/>
  * <br/>
  * The local server's port is randomly assigned.
+ *
+ * @param <K>
+ *
+ * @param <V>
  */
 @SpringBootTest(classes = { SpringBootApp.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
-public abstract class RestServiceTest extends SubsystemDbTest {
+public abstract class RestServiceTest<K, V> extends SubsystemDbTest {
 
   /**
    * The port of the web server during the test.
@@ -36,7 +40,7 @@ public abstract class RestServiceTest extends SubsystemDbTest {
   private DbTestHelper dbTestHelper;
 
   @Inject
-  private MessageSender messageSender;
+  private MessageSender<K, V> messageSender;
 
   @Inject
   private MessageRetryContext messageRetryContext;
@@ -73,7 +77,7 @@ public abstract class RestServiceTest extends SubsystemDbTest {
   /**
    * @return messageSender
    */
-  protected MessageSender getMessageSender() {
+  protected MessageSender<K, V> getMessageSender() {
 
     return this.messageSender;
   }

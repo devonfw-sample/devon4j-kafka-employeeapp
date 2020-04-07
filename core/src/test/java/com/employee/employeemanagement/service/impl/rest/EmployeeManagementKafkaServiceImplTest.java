@@ -19,9 +19,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * @param <V>
- * @param <K>
- * @param <V>
  *
  */
 @ExtendWith(SpringExtension.class)
@@ -70,6 +67,7 @@ public class EmployeeManagementKafkaServiceImplTest extends RestServiceTest {
         .until(() -> employeemanagementRestService.findEmployees(employeCriteria).getTotalElements() == 1);
 
     // Step 2: Delete employee via Kafka
+    // Arrange
     EmployeeEto newEmployee = employeemanagementRestService.findEmployees(employeCriteria).getContent().get(0);
     producerRecord = new ProducerRecord<>("employeeapp-employee-v1-delete", newEmployee.getId().toString());
 

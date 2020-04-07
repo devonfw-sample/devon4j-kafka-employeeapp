@@ -14,9 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.qos.logback.classic.Logger;
 
 /**
- * @author ravicm
- * @param <K>
- * @param <V>
+ * @param <K> the key type
+ * @param <V> the value type
  *
  */
 @Named

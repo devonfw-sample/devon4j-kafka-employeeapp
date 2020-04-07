@@ -12,7 +12,6 @@ import org.springframework.kafka.support.Acknowledgment;
 import com.devonfw.module.kafka.common.messaging.retry.api.client.MessageRetryOperations;
 
 /**
- * @author ravicm
  * @param <K>
  * @param <V>
  *

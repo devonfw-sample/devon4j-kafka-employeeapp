@@ -31,7 +31,7 @@ public class DeleteEmployeeMessageConsumer<K, V> {
    * @param consumerRecord
    * @param acknowledgment
    */
-  @KafkaListener(topics = "delete-Employee", groupId = "sample-Delete", containerFactory = "kafkaListenerContainerFactory")
+  @KafkaListener(topics = "employeeapp-employee-v1-delete", groupId = "${messaging.kafka.consumer.groupId}", containerFactory = "kafkaListenerContainerFactory")
   public void consumer(ConsumerRecord<K, V> consumerRecord, Acknowledgment acknowledgment) {
 
     try {

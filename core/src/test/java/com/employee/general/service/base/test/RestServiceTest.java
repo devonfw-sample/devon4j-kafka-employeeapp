@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import com.devonfw.module.kafka.common.messaging.api.client.MessageSender;
-import com.devonfw.module.kafka.common.messaging.retry.impl.MessageRetryContext;
 import com.devonfw.module.service.common.api.client.ServiceClientFactory;
 import com.devonfw.module.test.common.base.SubsystemDbTest;
 import com.devonfw.module.test.common.base.SubsystemTest;
@@ -20,12 +19,9 @@ import com.employee.general.common.base.test.TestUtil;
  * <br/>
  * The local server's port is randomly assigned.
  *
- * @param <K>
- *
- * @param <V>
  */
 @SpringBootTest(classes = { SpringBootApp.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
-public abstract class RestServiceTest<K, V> extends SubsystemDbTest {
+public abstract class RestServiceTest extends SubsystemDbTest {
 
   /**
    * The port of the web server during the test.
@@ -40,10 +36,7 @@ public abstract class RestServiceTest<K, V> extends SubsystemDbTest {
   private DbTestHelper dbTestHelper;
 
   @Inject
-  private MessageSender<K, V> messageSender;
-
-  @Inject
-  private MessageRetryContext messageRetryContext;
+  private MessageSender<String, String> messageSender;
 
   @Override
   protected void doSetUp() {
@@ -77,16 +70,9 @@ public abstract class RestServiceTest<K, V> extends SubsystemDbTest {
   /**
    * @return messageSender
    */
-  protected MessageSender<K, V> getMessageSender() {
+  protected MessageSender<String, String> getMessageSender() {
 
     return this.messageSender;
   }
 
-  /**
-   * @return messageRetryContext
-   */
-  protected MessageRetryContext getMessageRetryContext() {
-
-    return this.messageRetryContext;
-  }
 }

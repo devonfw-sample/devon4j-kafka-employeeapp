@@ -33,7 +33,7 @@ public class SaveEmployeeConsumer<K, V> {
    * @param acknowledgment
    * @throws Exception
    */
-  @KafkaListener(topics = "${messaging.kafka.health.topicsToCheck}", groupId = "${messaging.kafka.consumer.groupId}", containerFactory = "kafkaListenerContainerFactory")
+  @KafkaListener(topics = "employeeapp-employee-v1-add", groupId = "${messaging.kafka.consumer.groupId}", containerFactory = "kafkaListenerContainerFactory")
   public void consumer(ConsumerRecord<K, V> consumerRecord, Acknowledgment acknowledgment) {
 
     try {

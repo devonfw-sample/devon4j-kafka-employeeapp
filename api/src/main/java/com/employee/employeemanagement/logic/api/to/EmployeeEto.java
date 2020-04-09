@@ -32,23 +32,6 @@ public class EmployeeEto extends AbstractEto implements Employee {
     super();
   }
 
-  /**
-   * The constructor.
-   *
-   * @param name
-   * @param age
-   * @param location
-   * @param validEmployee
-   */
-  // public EmployeeEto(String name, Integer age, String location, Boolean validEmployee) {
-  //
-  // super();
-  // this.name = name;
-  // this.age = age;
-  // this.location = location;
-  // this.validEmployee = validEmployee;
-  // }
-
   @Override
   public void setName(String name) {
 

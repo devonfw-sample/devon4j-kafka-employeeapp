@@ -7,7 +7,7 @@ import com.employee.employeemanagement.common.api.Employee;
 import com.employee.general.dataaccess.api.ApplicationPersistenceEntity;
 
 /**
- * @author ravicm
+ * An Employee entity class.
  */
 @Entity
 @Table(name = "Employee")
@@ -106,10 +106,10 @@ public class EmployeeEntity extends ApplicationPersistenceEntity implements Empl
   /**
    * The constructor.
    *
-   * @param name
-   * @param age
-   * @param location
-   * @param validEmployee
+   * @param name the name
+   * @param age the age
+   * @param location the location
+   * @param validEmployee isValidEmployee
    */
   public EmployeeEntity(String name, Integer age, String location, Boolean validEmployee) {
 

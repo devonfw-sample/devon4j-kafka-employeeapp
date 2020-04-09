@@ -14,8 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.qos.logback.classic.Logger;
 
 /**
- * @param <K> the key type
- * @param <V> the value type
+ * This is an implementation class for {@link MessageProcessor}. Here in this sample application the consumed message
+ * from {@link DeleteEmployeeMessageConsumer} is used as an information for
+ * {@link Employeemanagement#saveEmployee(EmployeeEto)} to save as an employee in the DB.
+ *
+ * @param <K> the key type.
+ * @param <V> the value type.
  *
  */
 @Named

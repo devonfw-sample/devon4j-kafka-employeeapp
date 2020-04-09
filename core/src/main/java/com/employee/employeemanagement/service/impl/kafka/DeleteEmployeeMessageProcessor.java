@@ -12,8 +12,12 @@ import com.employee.employeemanagement.logic.api.Employeemanagement;
 import ch.qos.logback.classic.Logger;
 
 /**
- * @param <K>
- * @param <V>
+ * This is an implementation class for {@link MessageProcessor}. Here in this sample application the consumed message
+ * from {@link DeleteEmployeeMessageConsumer} is used as an information for
+ * {@link Employeemanagement#deleteEmployee(long)} to delete an employee already exists in the DB.
+ *
+ * @param <K> the key type.
+ * @param <V> the value type.
  *
  */
 @Named

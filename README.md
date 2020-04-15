@@ -1,5 +1,5 @@
 # devonKafkaApplication
-A simple kafka application using devon frameworks' kafka module.
+A simple kafka application using [devon4j's kafka module](https://github.com/devonfw/devon4j/blob/develop/documentation/guide-kafka.asciidoc).
 
 # sample-application
 

@@ -12,9 +12,11 @@ Its validated using another service findEmployeeByCriteria
 # Execution
 * In order to run the test method in the sample application its required to run the ZooKeeper & kafka installed in your system.
 
-    git clone https://github.com/wurstmeister/kafka-docker.git
-    cd kafka-docker
-    docker-compose up -d
+```
+git clone https://github.com/wurstmeister/kafka-docker.git
+cd kafka-docker
+docker-compose up -d
+```
 
 * Update the port number in the application.properties `messaging.kafka.common.bootstrapServers=localhost:9092`.
 Here it is localhost:9092, if you are using docker or anyother port number it is required to update here . 

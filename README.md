@@ -3,7 +3,7 @@ A simple kafka application using [devon4j's kafka module](https://github.com/dev
 
 # sample-application
 
-This application shows how devon-kafka works with the test method saveAndDeleteEmployeeViaKafkaService.
+This application shows how devon4j-kafka works with the test method `saveAndDeleteEmployeeViaKafkaService`.
 This test menthod has 2 checks:
 * sends an employee information to the kafka using MessageSender of devon-kafka and consuming it with the Listener service classes implemented as part of this application and saves it in Db(using MessageProcessor). Its validated using another service findEmployeeByCriteria. 
 * Send an employeeId information to the kakfa using MessageSender of devon-kafka and consuming it with the listener service classes implemented as part of this application and deletes the employee corresponding to the employeeId consumed(using MessageProcessor). 

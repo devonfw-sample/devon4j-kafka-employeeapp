@@ -18,5 +18,4 @@ cd kafka-docker
 docker-compose up -d
 ```
 
-* Update the port number in the application.properties `messaging.kafka.common.bootstrapServers=localhost:9092`.
-Here it is localhost:9092, if you are using docker or anyother port number it is required to update here . 
+* Update the port number in the application.properties `messaging.kafka.common.bootstrapServers=localhost:9092`. For docker use `docker ps` to find out the mapped port number for the kafka container.

@@ -34,6 +34,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
+  // @RolesAllowed("admin")
   public boolean deleteEmployee(long employeeId) {
 
     EmployeeEntity employee = getEmployeeRepository().find(employeeId);
@@ -43,6 +44,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
+  // @RolesAllowed("admin")
   public EmployeeEto saveEmployee(EmployeeEto employee) {
 
     Objects.requireNonNull(employee, "employee");

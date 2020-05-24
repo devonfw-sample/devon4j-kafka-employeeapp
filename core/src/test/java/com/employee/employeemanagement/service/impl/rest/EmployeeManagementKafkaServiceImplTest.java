@@ -1,14 +1,22 @@
 package com.employee.employeemanagement.service.impl.rest;
 
+import java.nio.charset.Charset;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.devonfw.module.kafka.common.messaging.api.client.MessageSender;
+import com.devonfw.module.security.common.api.authentication.DefaultAuthentication;
+import com.devonfw.module.security.jwt.common.base.JwtConstants;
 import com.devonfw.module.service.common.api.client.config.ServiceClientConfigBuilder;
 import com.employee.employeemanagement.logic.api.to.EmployeeEto;
 import com.employee.employeemanagement.logic.api.to.EmployeeSearchCriteriaTo;
@@ -53,8 +61,13 @@ public class EmployeeManagementKafkaServiceImplTest extends RestServiceTest {
       LOG.error("Error while converting employee as String");
     }
 
+    String jwtToken = createJwtToken();
+
     ProducerRecord<String, String> producerRecord = new ProducerRecord<>("employeeapp-employee-v1-add",
         convertedMessage);
+
+    // adding jwt header
+    producerRecord.headers().add(JwtConstants.HEADER_AUTHORIZATION, jwtToken.getBytes(Charset.forName("UTF-8")));
 
     EmployeemanagementRestService employeemanagementRestService = getServiceClientFactory()
         .create(EmployeemanagementRestService.class, new ServiceClientConfigBuilder().host("localhost").authBasic()
@@ -74,12 +87,27 @@ public class EmployeeManagementKafkaServiceImplTest extends RestServiceTest {
     // Step 2: Delete employee via Kafka
     // Arrange
     EmployeeEto newEmployee = employeemanagementRestService.findEmployees(employeCriteria).getContent().get(0);
+
     producerRecord = new ProducerRecord<>("employeeapp-employee-v1-delete", newEmployee.getId().toString());
+    // adding jwt header
+    producerRecord.headers().add(JwtConstants.HEADER_AUTHORIZATION, jwtToken.getBytes(Charset.forName("UTF-8")));
 
     // Act
     getMessageSender().sendMessage(producerRecord);
     // Assert
     Awaitility.await().until(() -> employeemanagementRestService.findEmployees(employeCriteria).isEmpty() == true);
+  }
+
+  private String createJwtToken() {
+
+    Set<String> roles = Set.of("admin");
+
+    Set<SimpleGrantedAuthority> grantedAuthorities = roles.stream().map(value -> new SimpleGrantedAuthority(value))
+        .collect(Collectors.toSet());
+
+    Authentication authentication = new DefaultAuthentication("ashwin", "*****", grantedAuthorities);
+
+    return getJwtCreator().create(authentication);
   }
 
 }

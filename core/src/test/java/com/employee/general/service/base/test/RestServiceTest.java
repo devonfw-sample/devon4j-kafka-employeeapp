@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import com.devonfw.module.kafka.common.messaging.api.client.MessageSender;
+import com.devonfw.module.security.jwt.common.api.JwtCreator;
 import com.devonfw.module.service.common.api.client.ServiceClientFactory;
 import com.devonfw.module.test.common.base.SubsystemDbTest;
 import com.devonfw.module.test.common.base.SubsystemTest;
@@ -37,6 +38,9 @@ public abstract class RestServiceTest extends SubsystemDbTest {
 
   @Inject
   private MessageSender<String, String> messageSender;
+
+  @Inject
+  private JwtCreator jwtCreator;
 
   @Override
   protected void doSetUp() {
@@ -73,6 +77,14 @@ public abstract class RestServiceTest extends SubsystemDbTest {
   protected MessageSender<String, String> getMessageSender() {
 
     return this.messageSender;
+  }
+
+  /**
+   * @return jwtCreator
+   */
+  public JwtCreator getJwtCreator() {
+
+    return jwtCreator;
   }
 
 }

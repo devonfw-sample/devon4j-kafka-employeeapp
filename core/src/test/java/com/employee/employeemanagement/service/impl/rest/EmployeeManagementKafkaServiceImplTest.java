@@ -1,8 +1,8 @@
 package com.employee.employeemanagement.service.impl.rest;
 
 import java.nio.charset.Charset;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Awaitility;
@@ -100,10 +100,7 @@ public class EmployeeManagementKafkaServiceImplTest extends RestServiceTest {
 
   private String createJwtToken() {
 
-    Set<String> roles = Set.of("admin");
-
-    Set<SimpleGrantedAuthority> grantedAuthorities = roles.stream().map(value -> new SimpleGrantedAuthority(value))
-        .collect(Collectors.toSet());
+    List<SimpleGrantedAuthority> grantedAuthorities = Arrays.asList(new SimpleGrantedAuthority("admin"));
 
     Authentication authentication = new DefaultAuthentication("ashwin", "*****", grantedAuthorities);
 

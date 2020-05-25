@@ -33,7 +33,6 @@
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-security-jwt</artifactId>
-      <version>2020.04.002-SNAPSHOT</version>
     </dependency>
 
     <!-- Bean-Mapping for conversion from TO to Entity and vice versa -->
@@ -53,26 +52,26 @@
       <artifactId>devon4j-web</artifactId>
     </dependency>
 
-    <!-- Only required if you want to call external REST services within
+    <!-- Only required if you want to call external REST services within 
       your Java application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-client-rest</artifactId>
     </dependency>
-    <!-- Only required if you want to call external SOAP services within
+    <!-- Only required if you want to call external SOAP services within 
       your Java application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-client-ws</artifactId>
     </dependency>
 
-    <!-- Only required if you want to provide REST services within your Java
+    <!-- Only required if you want to provide REST services within your Java 
       application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-server-rest</artifactId>
     </dependency>
-    <!-- Only required if you want to provide SOAP services within your Java
+    <!-- Only required if you want to provide SOAP services within your Java 
       application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
@@ -103,7 +102,7 @@
       <artifactId>hibernate-entitymanager</artifactId>
     </dependency>
 
-    <!-- QueryDSL JPA for dynamic queries in type-safe and SQL-injection-safe
+    <!-- QueryDSL JPA for dynamic queries in type-safe and SQL-injection-safe 
       way -->
     <dependency>
       <groupId>com.querydsl</groupId>
@@ -228,6 +227,14 @@
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>

@@ -2,6 +2,7 @@ package com.employee.employeemanagement.logic.impl.usecase;
 
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
-  // @RolesAllowed("admin")
+  @RolesAllowed("admin")
   public boolean deleteEmployee(long employeeId) {
 
     EmployeeEntity employee = getEmployeeRepository().find(employeeId);
@@ -44,7 +45,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
-  // @RolesAllowed("admin")
+  @RolesAllowed("admin")
   public EmployeeEto saveEmployee(EmployeeEto employee) {
 
     Objects.requireNonNull(employee, "employee");

@@ -14,6 +14,7 @@ import com.employee.employeemanagement.dataaccess.api.EmployeeEntity;
 import com.employee.employeemanagement.logic.api.to.EmployeeEto;
 import com.employee.employeemanagement.logic.api.usecase.UcManageEmployee;
 import com.employee.employeemanagement.logic.base.usecase.AbstractEmployeeUc;
+import com.employee.general.common.api.security.ApplicationAccessControlConfig;
 
 /**
  * Use case implementation for modifying and deleting Employees
@@ -35,7 +36,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
-  @RolesAllowed("admin")
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_DELETE_EMPLOYEE)
   public boolean deleteEmployee(long employeeId) {
 
     EmployeeEntity employee = getEmployeeRepository().find(employeeId);
@@ -45,7 +46,7 @@ public class UcManageEmployeeImpl extends AbstractEmployeeUc implements UcManage
   }
 
   @Override
-  @RolesAllowed("admin")
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_SAVE_EMPLOYEE)
   public EmployeeEto saveEmployee(EmployeeEto employee) {
 
     Objects.requireNonNull(employee, "employee");

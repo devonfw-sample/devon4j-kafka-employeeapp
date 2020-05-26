@@ -23,6 +23,7 @@ import com.employee.employeemanagement.logic.api.to.EmployeeSearchCriteriaTo;
 import com.employee.employeemanagement.service.api.rest.EmployeemanagementRestService;
 import com.employee.employeemanagement.service.impl.kafka.DeleteEmployeeMessageConsumer;
 import com.employee.employeemanagement.service.impl.kafka.SaveEmployeeConsumer;
+import com.employee.general.common.api.security.ApplicationAccessControlConfig;
 import com.employee.general.service.base.test.RestServiceTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -100,7 +101,8 @@ public class EmployeeManagementKafkaServiceImplTest extends RestServiceTest {
 
   private String createJwtToken() {
 
-    List<SimpleGrantedAuthority> grantedAuthorities = Arrays.asList(new SimpleGrantedAuthority("admin"));
+    List<SimpleGrantedAuthority> grantedAuthorities = Arrays
+        .asList(new SimpleGrantedAuthority(ApplicationAccessControlConfig.GROUP_MANAGER));
 
     Authentication authentication = new DefaultAuthentication("ashwin", "*****", grantedAuthorities);
 

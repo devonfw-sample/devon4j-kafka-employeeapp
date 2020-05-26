@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.devonfw.module.security.common.api.accesscontrol.AccessControl;
 import com.devonfw.module.security.common.api.accesscontrol.AccessControlProvider;
 import com.devonfw.module.security.common.base.accesscontrol.AccessControlGrantedAuthority;
+import com.employee.general.common.api.security.ApplicationAccessControlConfig;
 
 /**
  * Custom implementation of {@link UserDetailsService}.<br>
@@ -83,7 +84,7 @@ public class BaseUserDetailsService implements UserDetailsService {
 
     Collection<String> roles = new ArrayList<>();
     // TODO for a reasonable application you need to retrieve the roles of the user from a central IAM system
-    roles.add(username);
+    roles.add(ApplicationAccessControlConfig.APP_ID + "." + username);
     return roles;
   }
 

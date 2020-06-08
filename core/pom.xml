@@ -52,26 +52,26 @@
       <artifactId>devon4j-web</artifactId>
     </dependency>
 
-    <!-- Only required if you want to call external REST services within 
+    <!-- Only required if you want to call external REST services within
       your Java application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-client-rest</artifactId>
     </dependency>
-    <!-- Only required if you want to call external SOAP services within 
+    <!-- Only required if you want to call external SOAP services within
       your Java application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-client-ws</artifactId>
     </dependency>
 
-    <!-- Only required if you want to provide REST services within your Java 
+    <!-- Only required if you want to provide REST services within your Java
       application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
       <artifactId>devon4j-starter-cxf-server-rest</artifactId>
     </dependency>
-    <!-- Only required if you want to provide SOAP services within your Java 
+    <!-- Only required if you want to provide SOAP services within your Java
       application -->
     <dependency>
       <groupId>com.devonfw.java.starters</groupId>
@@ -102,7 +102,7 @@
       <artifactId>hibernate-entitymanager</artifactId>
     </dependency>
 
-    <!-- QueryDSL JPA for dynamic queries in type-safe and SQL-injection-safe 
+    <!-- QueryDSL JPA for dynamic queries in type-safe and SQL-injection-safe
       way -->
     <dependency>
       <groupId>com.querydsl</groupId>

@@ -12,6 +12,7 @@ import org.springframework.kafka.support.Acknowledgment;
 import com.devonfw.module.kafka.common.messaging.api.config.MessageReceiverConfig;
 import com.devonfw.module.kafka.common.messaging.retry.api.client.MessageRetryOperations;
 import com.devonfw.module.kafka.common.messaging.retry.api.config.MessageDefaultRetryConfig;
+import com.devonfw.module.security.jwt.common.base.kafka.JwtAuthentication;
 
 /**
  * A Listener class with {@link KafkaListener} listens the message for the given topic and group name. This class uses
@@ -40,6 +41,7 @@ public class DeleteEmployeeMessageConsumer<K, V> {
    * @param consumerRecord the consumed {@link ConsumerRecord}
    * @param acknowledgment the {@link Acknowledgment} to acknowledge the listener that message has been processed.
    */
+  @JwtAuthentication
   @KafkaListener(topics = "employeeapp-employee-v1-delete", groupId = "${messaging.kafka.consumer.groupId}", containerFactory = "kafkaListenerContainerFactory")
   public void consumer(ConsumerRecord<K, V> consumerRecord, Acknowledgment acknowledgment) {
 

@@ -15,6 +15,7 @@ hs_err_pid*
 
 target
 eclipse-target
+.idea
 war
 **/src/generated/
 **/tmp/
